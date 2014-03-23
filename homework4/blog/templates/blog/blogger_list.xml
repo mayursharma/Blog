@@ -1,0 +1,7 @@
+
+<bloggers>{% for blogger in other_bloggers %}
+  <blogger>
+    <email>{{blogger.email}}</email>
+    <name>{{blogger.first_name}}</name>
+  </blogger>{% endfor %}
+</bloggers>

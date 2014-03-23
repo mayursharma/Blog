@@ -1,0 +1,29 @@
+{% extends 'blog/Base_Browse.html' %}
+{% load static %}
+{% block title %}Register{% endblock %}
+{% block body_block %}
+
+    <div class="container">
+
+      <form class="form-signin" role="form" method="post" action="/blog/register">
+         <h3 class="form-signin-heading">{% for error in errors %}
+<p style="color: red">
+{{ error }}
+</p>
+{% endfor %}
+
+<p></h3>
+        <h2 class="form-signin-heading">Registration : </h2>
+        <input type="text" class="form-control" placeholder="First Name" name="firstname" required autofocus>
+        <input type="text" class="form-control" placeholder="Last Name" name="lastname" required>
+        <input type="email" class="form-control" placeholder="Email" name="username" required>
+        <input type="password" class="form-control" placeholder="Password" name="password1" required>
+        <input type="password" class="form-control" placeholder="Confirm Password" name="password2" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" >Register</button>
+        {% csrf_token %}
+
+      </form>
+
+    </div> 
+{% endblock %}
+

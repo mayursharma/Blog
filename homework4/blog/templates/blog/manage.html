@@ -1,0 +1,31 @@
+{% extends 'blog/Base_Browse.html' %}
+{% load static %}
+{% block title %} Manage Posts {% endblock %}
+
+{% block body_block %}
+{% if user.is_authenticated %}
+<div class="jumbotron">
+        <h3>Hi,  What's on you mind ? Share it ! </h3><br>
+        <p class="row text-center">
+        <form enctype="multipart/form-data" action="/blog/add-item" method="post" >
+  <textarea class="form-control" name="text" id="id_text" maxlength="160" rows="3" placeholder="What are you thinking  ?"> </textarea><br>
+  <p>{{form.picture}}</p>
+  <p><input class="btn btn-lg btn-success" input type="submit"></input></p>
+  {% csrf_token %}
+</form></p>
+      </div>
+{% endif %}
+<p>
+Your Blog posts :
+<ol>
+{% for item in items %}
+	<li> <b>Created on {{item.added}}</b> <br>
+	<a href="/blog/delete-item/{{item.id}}">Delete</a> <br>
+	{% if item.picture %}
+<img src="{% url 'photo' item.id %}" width="200px"><br>
+{% endif %}
+ {{item.text}} <br><br>
+{% endfor %}
+</ol>
+</p>
+{% endblock %}

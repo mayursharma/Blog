@@ -1,0 +1,24 @@
+{% extends 'blog/Base_Browse.html' %}
+{% load static %}
+{% block title %}
+{% if tit %}
+{{ tit }} 
+{% else %}
+Blog
+{% endif %}
+{% endblock %}
+{% block body_block %}
+<p><h4 color="red"> {{message}} </h4> </p><br>
+<h2> Blog posts : </h2><br>
+<ol>
+{% for item in items %}
+	<li> <b>Created on {{item.added}} by {{item.user.first_name}}</b><br>
+  {% if item.picture %}
+<img src="{% url 'photo' item.id %}" width="200px">
+{% endif %}
+  <p>{{item.text}} <br><br></p>
+{% endfor %}
+</ol>
+</p>
+{% endblock %}
+
